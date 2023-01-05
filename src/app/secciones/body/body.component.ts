@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BodyComponent implements OnInit {
 
+  area: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
