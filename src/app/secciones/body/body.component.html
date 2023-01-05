@@ -1,19 +1,69 @@
-<div class="mt-72 md:mt-24 mx-14">
-    <h1 class="mb-3 text-4xl font-bold">Bienvenido a mi perfil</h1>
-    <p>Hola, soy Franco Ojeda. He creado esta pagina para que puedas conocer un poco mas de lo que he realizado a lo largo de mi vida, asi que elije un area para comenzar.</p>
-    <select name="" id="" class="border w-full mx-auto my-6 sm:w-64 sm:m-8" [(ngModel)]="area">
-        <option value="" selected>Elije el area</option>
-        <option value="visual">Audiovisual</option>
-        <option value="arqui">Arquitectura</option>
-        <option value="program">Programacion</option>
-        <option value="merch">Mercaderia</option>
-    </select>
-    <div [ngSwitch]="area" class="my-4">
-        <p *ngSwitchCase="'visual'" [ngStyle]="{'color':'green'}">Trabajo en el area audiovisual desde el 2015. Me he desempeñado en distintos proyectos y en distintos cargos, como camarografo, productor, guionista y, en su mayria, editor de video.</p>
-        <p *ngSwitchCase="'arqui'" [ngStyle]="{'color':'orange'}">Estudié la carrera de Arquitectura en la Universidad Ricardo Palma, logrando culminarla y sacar mi titulo a finales del 2016. Mi trabajo de tesis fue un proyecto que consisitia en un terminal terrestre para la ciudad de Pucallpa.</p>
-        <p *ngSwitchCase="'program'" [ngStyle]="{'color':'purple'}">A partir del 2022 comencé a estudiar programacion para paginas web de manera autodidacta. Actualmente me encuentro estudiando en una beca, y pienso dedicarme a la programacion front end. </p>
-        <p *ngSwitchCase="'merch'" [ngStyle]="{'color':'blue'}">He incursionado en la elaboracion de merchandising para creadores de contenido, realizando polos, tazas, bolsas y mas con las marcas de influencers y pequeñas empresas.</p>
-        <p *ngSwitchDefault="" [ngStyle]="{'color':'red'}">(Al elegir un area saldrá un taxto aquí)</p>
+<div class="mt-72 md:mt-24 mx-14 grid md:grid-cols-2 justify-evenly">
+    <div class="pr-3">
+        <h1 class="mb-3 text-4xl font-bold">Bienvenido a mi perfil</h1>
+        <p>Hola, soy Franco Ojeda. He creado esta pagina para que puedas conocer un poco mas de lo que he realizado a lo largo de mi vida, asi que elije un area para comenzar.</p>
+
+        <select name="" id="" class="border w-full mx-auto my-6 sm:w-64 sm:m-8" [(ngModel)]="area">
+            <option value="" selected>Elije el area</option>
+            <option value="visual">Audiovisual</option>
+            <option value="arqui">Arquitectura</option>
+            <option value="program">Programacion</option>
+            <option value="merch">Mercaderia</option>
+        </select>
+        <div [ngSwitch]="area" class="my-4">
+            <div *ngSwitchCase="'visual'" class="grid justify-items-center">
+                <p  [ngStyle]="{'color':'green'}">Trabajo en el area audiovisual desde el 2015. Me he desempeñado en distintos proyectos y en distintos cargos, como camarografo, productor, guionista y, en su mayria, editor de video.</p>
+                <img src="https://www.toulouselautrec.edu.pe/sites/default/files/imagenes/cursos/toulouse-carreras-tecnicas-comunicacion-audiovisual-1.jpg" alt="img audiovisual" class=" mt-5 w-full lg:w-2/3">
+            </div>
+            <div *ngSwitchCase="'arqui'" class="grid justify-items-center">
+                <p [ngStyle]="{'color':'orange'}">Estudié la carrera de Arquitectura en la Universidad Ricardo Palma, logrando culminarla y sacar mi titulo a finales del 2016. Mi trabajo de tesis fue un proyecto que consisitia en un terminal terrestre para la ciudad de Pucallpa.</p>
+                <img src="https://www.eadic.com/wp-content/uploads/2017/03/arquitecto-1.jpg" alt="img arquitectura" class=" mt-5 w-full lg:w-2/3">
+            </div>
+            <div *ngSwitchCase="'program'" class="grid justify-items-center">
+                <p [ngStyle]="{'color':'purple'}">A partir del 2022 comencé a estudiar programacion para paginas web de manera autodidacta. Actualmente me encuentro estudiando en una beca, y pienso dedicarme a la programacion front end. </p>
+                <img src="https://i.ytimg.com/vi/bYOjmW-740M/maxresdefault.jpg" alt="img programacion" class=" mt-5 w-full lg:w-2/3">
+            </div>
+            <div *ngSwitchCase="'merch'" class="grid justify-items-center">
+                <p [ngStyle]="{'color':'blue'}">He incursionado en la elaboracion de merchandising para creadores de contenido, realizando polos, tazas, bolsas y mas con las marcas de influencers y pequeñas empresas.</p>
+                <img src="https://arteurbanosac.com/wp-content/uploads/2020/04/mochila-768x429.png" alt="img merch" class=" mt-5 w-full lg:w-2/3">
+            </div>            
+            <p *ngSwitchDefault="" [ngStyle]="{'color':'red'}">(Al elegir un area saldrá un taxto aquí)</p>
+        </div>
     </div>
+
+    <div class="pl-3">
+        <h1 class="mb-3 text-2xl font-bold">¿Conversamos?</h1>
+        <p>Si quieres contactarme, ¡no esperes más y escríbirme aqui mismo!</p>
+        <form [formGroup]="formLogin" (submit)="send()">
+            <!-- input nombre -->
+            <div>
+                <label for="nombre">Nombre: </label>
+                <input type="text" id="nombre" formControlName="nombre" class="border">
+            </div>
+            <!-- input email -->
+            <div>
+                <label for="email">Email: </label>
+                <input type="text" id="email" formControlName="email" class="border">
+            </div>
+            <!-- input texto -->
+            <div>
+                <label for="msg">Mensaje: </label>
+                <textarea name="" id="msg" cols="30" rows="10" formControlName="msg" class="border"></textarea>
+            </div>
+            <!-- mensaje invalido -->
+            <div *ngIf="formLogin.invalid" [ngStyle]="{'color':'red'}">(Todos los campos deben estar llenos para enviar el correo)</div>
+            <!-- Button -->
+            <div>
+                <button [disabled]="formLogin.invalid" >Enviar correo</button>
+            </div>
+            
+        </form>
+
+        <div>
+            {{formLogin.value | json}}
+        </div>
+    
+    </div>
+
 </div>
     
