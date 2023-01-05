@@ -10,19 +10,67 @@
             <option value="program">Programacion</option>
             <option value="merch">Mercaderia</option>
         </select>
+
+        <!-- Profesiones / ngSwitch -->
         <div [ngSwitch]="area" class="my-4">
+            <!-- Audiovisuales -->
             <div *ngSwitchCase="'visual'" class="grid justify-items-center">
                 <p  [ngStyle]="{'color':'green'}">Trabajo en el area audiovisual desde el 2015. Me he desempeñado en distintos proyectos y en distintos cargos, como camarografo, productor, guionista y, en su mayria, editor de video.</p>
                 <img src="https://www.toulouselautrec.edu.pe/sites/default/files/imagenes/cursos/toulouse-carreras-tecnicas-comunicacion-audiovisual-1.jpg" alt="img audiovisual" class=" mt-5 w-full lg:w-2/3">
+                <table class="table-fixed border-collapse border border-slate-500 mt-8">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border border-slate-600 p-4 bg-zinc-300">Habilidades</th>
+                        <th scope="col" class="border border-slate-600 p-4 bg-zinc-300">Detalles</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let habilidad of skillsVisual">
+                        <td class="border border-slate-600 p-3">{{habilidad.habilidad}}</td>
+                        <td class="border border-slate-600 p-3">{{habilidad.descripcion}}</td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
+            <!-- Arquitectura -->
             <div *ngSwitchCase="'arqui'" class="grid justify-items-center">
                 <p [ngStyle]="{'color':'orange'}">Estudié la carrera de Arquitectura en la Universidad Ricardo Palma, logrando culminarla y sacar mi titulo a finales del 2016. Mi trabajo de tesis fue un proyecto que consisitia en un terminal terrestre para la ciudad de Pucallpa.</p>
                 <img src="https://www.eadic.com/wp-content/uploads/2017/03/arquitecto-1.jpg" alt="img arquitectura" class=" mt-5 w-full lg:w-2/3">
+                <table class="table-fixed border-collapse border border-slate-500 mt-8">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border border-slate-600 p-4 bg-zinc-300">Habilidades</th>
+                        <th scope="col" class="border border-slate-600 p-4 bg-zinc-300">Detalles</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let habilidad of skillsArqui">
+                        <td class="border border-slate-600 p-3">{{habilidad.habilidad}}</td>
+                        <td class="border border-slate-600 p-3">{{habilidad.descripcion}}</td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
+            <!-- Programacion -->
             <div *ngSwitchCase="'program'" class="grid justify-items-center">
                 <p [ngStyle]="{'color':'purple'}">A partir del 2022 comencé a estudiar programacion para paginas web de manera autodidacta. Actualmente me encuentro estudiando en una beca, y pienso dedicarme a la programacion front end. </p>
                 <img src="https://i.ytimg.com/vi/bYOjmW-740M/maxresdefault.jpg" alt="img programacion" class=" mt-5 w-full lg:w-2/3">
+                <table class="table-fixed border-collapse border border-slate-500 mt-8">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border border-slate-600 p-4 bg-zinc-300">Habilidades</th>
+                        <th scope="col" class="border border-slate-600 p-4 bg-zinc-300">Detalles</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let habilidad of skillsProgram">
+                        <td class="border border-slate-600 p-3">{{habilidad.habilidad}}</td>
+                        <td class="border border-slate-600 p-3">{{habilidad.descripcion}}</td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
+            <!-- Merchandising -->
             <div *ngSwitchCase="'merch'" class="grid justify-items-center">
                 <p [ngStyle]="{'color':'blue'}">He incursionado en la elaboracion de merchandising para creadores de contenido, realizando polos, tazas, bolsas y mas con las marcas de influencers y pequeñas empresas.</p>
                 <img src="https://arteurbanosac.com/wp-content/uploads/2020/04/mochila-768x429.png" alt="img merch" class=" mt-5 w-full lg:w-2/3">
@@ -31,36 +79,41 @@
         </div>
     </div>
 
-    <div class="pl-3">
-        <h1 class="mb-3 text-2xl font-bold">¿Conversamos?</h1>
+    <!-- Contactame / Validacion -->
+    <div class="pl-3 grid justify-items-center">
+        <h1 class="mb-5 mt-8 sm:mt-0 text-2xl font-bold">¿Conversamos?</h1>
         <p>Si quieres contactarme, ¡no esperes más y escríbirme aqui mismo!</p>
-        <form [formGroup]="formLogin" (submit)="send()">
+        <form [formGroup]="formLogin" (submit)="send()" class="grid justify-items-center">
             <!-- input nombre -->
-            <div>
-                <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre" formControlName="nombre" class="border">
+            <div class="w-full mt-4">
+                <label for="nombre">Nombre: </label><br>
+                <input type="text" id="nombre" formControlName="nombre" class="border w-full" placeholder="Escribe tu nombre o usuario">
             </div>
             <!-- input email -->
-            <div>
-                <label for="email">Email: </label>
-                <input type="text" id="email" formControlName="email" class="border">
+            <div class="w-full mt-4">
+                <label for="email">Email: </label><br>
+                <input type="text" id="email" formControlName="email" class="border w-full" placeholder="Escribe tu correo">
             </div>
             <!-- input texto -->
-            <div>
-                <label for="msg">Mensaje: </label>
-                <textarea name="" id="msg" cols="30" rows="10" formControlName="msg" class="border"></textarea>
+            <div class="w-full mt-4">
+                <label for="msg">Mensaje: </label><br>
+                <textarea name="" id="msg" cols="60" rows="6" formControlName="msg" class="border w-full" placeholder="Dime qué necesitas (en menos de 500 caracteres)."></textarea>
             </div>
             <!-- mensaje invalido -->
-            <div *ngIf="formLogin.invalid" [ngStyle]="{'color':'red'}">(Todos los campos deben estar llenos para enviar el correo)</div>
+            <div *ngIf="formLogin.invalid" [ngStyle]="{'color':'red'}" class="mt-4">(Todos los campos deben estar llenos para enviar el correo)</div>
             <!-- Button -->
-            <div>
-                <button [disabled]="formLogin.invalid" >Enviar correo</button>
+            <div>                
+                <button *ngIf="formLogin.invalid; else activado" [disabled]="formLogin.invalid" class="bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed m-5">Enviar correo</button>
+                <ng-template #activado><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5">Enviar correo</button></ng-template>
             </div>
-            
         </form>
-
-        <div>
-            {{formLogin.value | json}}
+        <!-- Muestra de datos -->
+        <div class="border p-4">          
+            <h1 class="text-xl font-semibold">Resumen de registro</h1>
+            <p>Datos necesarios para enviar tu correo</p> 
+            <p>Nombre: <span>{{formLogin.value.nombre}}</span></p>
+            <p>Correo: <span>{{formLogin.value.email}}</span></p>
+            <p>Mensaje: <span>{{formLogin.value.msg}}</span></p>
         </div>
     
     </div>
